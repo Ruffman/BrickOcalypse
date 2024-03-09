@@ -1,4 +1,6 @@
 import pygame as pg
+
+import editor
 from brick import Brick
 import math
 import json
@@ -24,6 +26,9 @@ class Playboard:
 
     def add_brick(self, level: int):
         is_free = True
+        if level not in editor.BRICK_LVL_TO_COLOR:
+            return
+
         for brick in self.bricks:
             if brick.position == self.active_coord:
                 is_free = False
