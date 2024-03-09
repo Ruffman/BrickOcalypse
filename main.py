@@ -41,8 +41,11 @@ my_playboard = Playboard(WIDTH, HEIGHT)
 my_playboard.calc_grid_coord()
 
 
-if not EDITOR_MODE:
-    pg.mouse.set_visible(False)
+def toggle_edit_mode():
+    global EDITOR_MODE
+    EDITOR_MODE = not EDITOR_MODE
+    pg.mouse.set_visible(EDITOR_MODE)
+
 
 
 def play_game():
@@ -85,6 +88,8 @@ while running:
                 my_playboard.save_brick_layout()
             if key == pg.K_l:
                 my_playboard.load_brick_layout()
+            if key == pg.K_e:
+                toggle_edit_mode()
 
     if play_game:
         play_game()
