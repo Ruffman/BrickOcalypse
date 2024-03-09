@@ -1,16 +1,11 @@
 import pygame as pg
+import editor
 
 
 WIDTH = 100
 HEIGHT = 30
 
-HEALTH_CODES = {
-    1: "white",
-    2: "red",
-    3: "orange",
-    4: "yellow",
-    5: "green",
-}
+
 
 
 class Brick(pg.sprite.Sprite):
@@ -20,7 +15,7 @@ class Brick(pg.sprite.Sprite):
 
         self.position = position
         self.level = level
-        self.color = HEALTH_CODES[level]
+        self.color = editor.HEALTH_CODES[level]
 
         self.image = pg.Surface([WIDTH, HEIGHT])
         self.image.fill(self.color)

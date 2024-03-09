@@ -9,10 +9,6 @@ FPS = 60
 WIDTH = 1280
 HEIGHT = 720
 
-EDITOR_MODE = True
-NEW_BRICK_LVL = 1
-
-
 
 def handle_ball_coll_border():
     radius = my_ball.radius // 2
