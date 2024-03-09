@@ -15,7 +15,7 @@ class Brick(pg.sprite.Sprite):
 
         self.position = position
         self.level = level
-        self.color = editor.HEALTH_CODES[level]
+        self.color = editor.BRICK_LVL_TO_COLOR[level]
 
         self.image = pg.Surface([WIDTH, HEIGHT])
         self.image.fill(self.color)

@@ -3,7 +3,7 @@
 
 EDITOR_MODE = True
 NEW_BRICK_LVL = 1
-HEALTH_CODES = {
+BRICK_LVL_TO_COLOR = {
     1: "white",
     2: "red",
     3: "orange",
