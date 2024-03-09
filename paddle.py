@@ -32,7 +32,7 @@ class Paddle(pg.sprite.Sprite):
         self.corner_r.fill("yellow")
 
         # this surface and rect is only for visual representation
-        self.paddle = pg.Surface((self.width_rect_paddle, self.height))
+        self.paddle = pg.Surface((self.width_total - self.width_corners, self.height))
         self.paddle.fill(self.color)
         self.rect_paddle = self.paddle.get_rect(center=(self.position_center.x, self.position_center.y))
 
