@@ -10,6 +10,7 @@ WIDTH = 1280
 HEIGHT = 720
 
 EDITOR_MODE = True
+NEW_BRICK_LVL = 1
 
 
 
@@ -74,7 +75,7 @@ while running:
             button = event.dict['button']
             if EDITOR_MODE:
                 if button == 1:
-                    my_playboard.add_brick()
+                    my_playboard.add_brick(NEW_BRICK_LVL)
                 if button == 3:
                     my_playboard.delete_brick()
         if event.type == pg.KEYDOWN:

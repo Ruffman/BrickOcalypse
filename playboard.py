@@ -22,13 +22,13 @@ class Playboard:
 
         self.bricks: list[Brick] = []
 
-    def add_brick(self):
+    def add_brick(self, level: int = 1):
         is_free = True
         for brick in self.bricks:
             if brick.position == self.active_coord:
                 is_free = False
         if is_free:
-            self.bricks.append(Brick(self.surface, pg.Vector2(self.active_coord)))
+            self.bricks.append(Brick(self.surface, pg.Vector2(self.active_coord), level))
 
     def delete_brick(self):
         brick_exists = False
