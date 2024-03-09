@@ -4,7 +4,7 @@ import editor
 
 
 class Paddle(pg.sprite.Sprite):
-    def __init__(self, screen: pg.Surface, position: pg.Vector2):
+    def __init__(self, screen: pg.Surface, position: pg.Vector2, width: int = 140):
         pg.sprite.Sprite.__init__(self)
         self.screen = screen
         self.position_center = position
@@ -12,11 +12,11 @@ class Paddle(pg.sprite.Sprite):
         self.color = "white"
         self.speed_x = 50
         self.height = 20
-        self.width = 100
-        self.width_middle = self.width // 2
+        self.width_total = width
+        self.width_for_calc = self.width_total - 2 * self.height
+        self.width_middle = self.width_for_calc // 2
         self.width_inter = self.width_middle // 2
         self.width_corners = self.height
-        self.width_rect_paddle = self.width - self.width_corners
         self.offset_inter = self.width_middle // 2 + self.width_inter // 2
         self.offset_corner = self.offset_inter + self.width_inter // 2 + self.width_corners // 2
 
