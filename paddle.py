@@ -37,6 +37,8 @@ class Paddle(pg.sprite.Sprite):
         self.rect_paddle = self.paddle.get_rect(center=(self.position_center.x, self.position_center.y))
 
         # these rects are used for collision detection
+        self.rect_total = pg.Surface((self.width_total, self.height)).get_rect(center=(self.position_center.x,
+                                                                                       self.position_center.y))
         self.rect_middle = self.middle.get_rect(center=(self.position_center.x, self.position_center.y))
         self.rect_inter_l = self.inter_l.get_rect(center=(self.position_center.x - self.offset_inter,
                                                           self.position_center.y))
@@ -50,6 +52,7 @@ class Paddle(pg.sprite.Sprite):
     def update(self):
         self.position_center = pg.Vector2(pg.mouse.get_pos()[0], self.position_center.y)
         self.rect_paddle.center = (self.position_center.x, self.position_center.y)
+        self.rect_total.center = self.rect_paddle.center
         self.rect_middle.center = self.rect_paddle.center
         self.rect_inter_l.center = (self.position_center.x - self.offset_inter, self.position_center.y)
         self.rect_inter_r.center = (self.position_center.x + self.offset_inter, self.position_center.y)
