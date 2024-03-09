@@ -31,7 +31,6 @@ pg.init()
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 clock = pg.time.Clock()
 running = True
-play_game = False
 dt = 0
 
 my_ball = Ball(screen, position=pg.Vector2(WIDTH // 2, HEIGHT // 2))
@@ -91,8 +90,8 @@ while running:
             if key == pg.K_e:
                 toggle_edit_mode()
 
-    if play_game:
-        play_game()
+
+    play_game()
 
     # flip() the display to put your work on screen
     pg.display.flip()
