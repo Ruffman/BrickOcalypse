@@ -46,6 +46,9 @@ def toggle_edit_mode():
     my_playboard.edit_mode = editor.EDITOR_MODE
 
 
+def toggle_debug_mode():
+    editor.DEBUG_MODE = not editor.DEBUG_MODE
+
 
 def play_game():
     # logic updates HERE
@@ -93,6 +96,8 @@ while running:
                 my_playboard.load_brick_layout()
             if key == pg.K_e:
                 toggle_edit_mode()
+            if key == pg.K_d:
+                toggle_debug_mode()
             if key == pg.K_1:
                 editor.NEW_BRICK_LVL = 1
             if key == pg.K_2:

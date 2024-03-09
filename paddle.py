@@ -1,5 +1,7 @@
 import pygame as pg
 
+import editor
+
 
 class Paddle(pg.sprite.Sprite):
     def __init__(self, screen: pg.Surface, position: pg.Vector2):
@@ -60,8 +62,9 @@ class Paddle(pg.sprite.Sprite):
         pg.draw.circle(self.screen, self.color, self.rect_corner_r.center, self.width_corners//2)
 
         # debug visualization of the paddle's collision zones
-        self.screen.blit(self.middle, self.rect_middle)
-        self.screen.blit(self.inter_l, self.rect_inter_l)
-        self.screen.blit(self.inter_r, self.rect_inter_r)
-        self.screen.blit(self.corner_l, self.rect_corner_l)
-        self.screen.blit(self.corner_r, self.rect_corner_r)
+        if editor.DEBUG_MODE:
+            self.screen.blit(self.middle, self.rect_middle)
+            self.screen.blit(self.inter_l, self.rect_inter_l)
+            self.screen.blit(self.inter_r, self.rect_inter_r)
+            self.screen.blit(self.corner_l, self.rect_corner_l)
+            self.screen.blit(self.corner_r, self.rect_corner_r)
