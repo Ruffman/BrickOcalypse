@@ -22,7 +22,7 @@ class Playboard:
 
         self.bricks: list[Brick] = []
 
-    def add_brick(self, level: int = 1):
+    def add_brick(self, level: int):
         is_free = True
         for brick in self.bricks:
             if brick.position == self.active_coord:

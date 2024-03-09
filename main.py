@@ -3,6 +3,7 @@ import pygame as pg
 from ball import Ball
 from playboard import Playboard
 from paddle import Paddle
+import editor
 
 
 FPS = 60
@@ -27,7 +28,7 @@ def player_paddle_with_ball_collision_check():
 pg.init()
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 clock = pg.time.Clock()
-pg.mouse.set_visible(EDITOR_MODE)
+pg.mouse.set_visible(editor.EDITOR_MODE)
 running = True
 dt = 0
 
@@ -39,10 +40,9 @@ my_playboard.calc_grid_coord()
 
 
 def toggle_edit_mode():
-    global EDITOR_MODE
-    EDITOR_MODE = not EDITOR_MODE
-    pg.mouse.set_visible(EDITOR_MODE)
-    my_playboard.edit_mode = EDITOR_MODE
+    editor.EDITOR_MODE = not editor.EDITOR_MODE
+    pg.mouse.set_visible(editor.EDITOR_MODE)
+    my_playboard.edit_mode = editor.EDITOR_MODE
 
 
 
@@ -57,7 +57,7 @@ def play_game():
     # RENDER YOUR GAME HERE
     my_playboard.update(screen)
 
-    if not EDITOR_MODE:
+    if not editor.EDITOR_MODE:
         my_ball.update(dt)
         player_paddle.update()
 
@@ -69,9 +69,9 @@ while running:
             running = False
         if event.type == pg.MOUSEBUTTONDOWN:
             button = event.dict['button']
-            if EDITOR_MODE:
+            if editor.EDITOR_MODE:
                 if button == 1:
-                    my_playboard.add_brick(NEW_BRICK_LVL)
+                    my_playboard.add_brick(editor.NEW_BRICK_LVL)
                 if button == 3:
                     my_playboard.delete_brick()
         if event.type == pg.KEYDOWN:
