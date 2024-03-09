@@ -9,6 +9,7 @@ import editor
 FPS = 60
 WIDTH = 1280
 HEIGHT = 720
+DAMPING = 0.02
 
 
 def handle_ball_coll_border():
@@ -20,6 +21,7 @@ def handle_ball_coll_border():
 
 
 def player_paddle_with_ball_collision_check():
+    # TODO better collision with angles and s
     if my_ball.rect.colliderect(player_paddle.rect_total):
         if my_ball.rect.colliderect(player_paddle.rect_middle):
             my_ball.speed_y *= -1
@@ -47,6 +49,8 @@ def player_paddle_with_ball_collision_check():
                 my_ball.speed_x *= 2
             elif my_ball.speed_x > 0:
                 my_ball.speed_x *= 0.5
+
+        my_ball.speed_x *= 1 - DAMPING
 
 
 # pygame setup
