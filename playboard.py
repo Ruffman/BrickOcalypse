@@ -7,6 +7,7 @@ import json
 
 class Playboard:
     def __init__(self, width, height):
+        self.edit_mode = True
         self.width = width
         self.height = height
 
@@ -59,9 +60,11 @@ class Playboard:
 
         for brick in self.bricks:
             brick.update()
-        self.paint_grid()
-        self.find_active()
-        self.highlight_active()
+
+        if self.edit_mode:
+            self.paint_grid()
+            self.find_active()
+            self.highlight_active()
 
         screen.blit(self.surface, self.surface.get_rect())
 

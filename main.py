@@ -30,6 +30,7 @@ def player_paddle_with_ball_collision_check():
 pg.init()
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 clock = pg.time.Clock()
+pg.mouse.set_visible(EDITOR_MODE)
 running = True
 dt = 0
 
@@ -44,6 +45,7 @@ def toggle_edit_mode():
     global EDITOR_MODE
     EDITOR_MODE = not EDITOR_MODE
     pg.mouse.set_visible(EDITOR_MODE)
+    my_playboard.edit_mode = EDITOR_MODE
 
 
 
@@ -58,8 +60,9 @@ def play_game():
     # RENDER YOUR GAME HERE
     my_playboard.update(screen)
 
-    my_ball.update(dt)
-    player_paddle.update()
+    if not EDITOR_MODE:
+        my_ball.update(dt)
+        player_paddle.update()
 
 
 while running:
@@ -69,10 +72,11 @@ while running:
             running = False
         if event.type == pg.MOUSEBUTTONDOWN:
             button = event.dict['button']
-            if button == 1:
-                my_playboard.add_brick()
-            if button == 3:
-                my_playboard.delete_brick()
+            if EDITOR_MODE:
+                if button == 1:
+                    my_playboard.add_brick()
+                if button == 3:
+                    my_playboard.delete_brick()
         if event.type == pg.KEYDOWN:
             key = event.dict['key']
             if key == pg.K_RIGHT:
