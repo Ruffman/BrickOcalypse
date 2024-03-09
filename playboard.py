@@ -48,7 +48,7 @@ class Playboard:
     def save_brick_layout(self):
         # layout_data = [(brick.position.x, brick.position.y, brick.color) for brick in self.bricks]
         layout_data = {"bricks": [
-            {"x": brick.position.x, "y": brick.position.y, "color": brick.color} for brick in self.bricks
+            {"x": brick.position.x, "y": brick.position.y, "level": brick.level} for brick in self.bricks
         ]}
 
         with open("maps/data.json", "w", encoding="utf-8") as file:
@@ -58,7 +58,7 @@ class Playboard:
         with open("maps/data.json", "r") as file:
             layout_data = json.load(file)
             for brick in layout_data["bricks"]:
-                self.bricks.append(Brick(self.surface, pg.Vector2(brick["x"], brick["y"]), brick["color"]))
+                self.bricks.append(Brick(self.surface, pg.Vector2(brick["x"], brick["y"]), brick["level"]))
 
     def update(self, screen: pg.Surface):
         self.surface.fill("black")
