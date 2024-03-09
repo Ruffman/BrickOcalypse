@@ -46,7 +46,6 @@ class Playboard:
             self.bricks.pop(brick_index)
 
     def save_brick_layout(self):
-        # layout_data = [(brick.position.x, brick.position.y, brick.color) for brick in self.bricks]
         layout_data = {"bricks": [
             {"x": brick.position.x, "y": brick.position.y, "level": brick.level} for brick in self.bricks
         ]}
