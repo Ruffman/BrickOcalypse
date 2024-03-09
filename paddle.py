@@ -50,7 +50,7 @@ class Paddle(pg.sprite.Sprite):
     def update(self):
         self.position_center = pg.Vector2(pg.mouse.get_pos()[0], self.position_center.y)
         self.rect_paddle.center = (self.position_center.x, self.position_center.y)
-        self.rect_middle.center = (self.position_center.x, self.position_center.y)
+        self.rect_middle.center = self.rect_paddle.center
         self.rect_inter_l.center = (self.position_center.x - self.offset_inter, self.position_center.y)
         self.rect_inter_r.center = (self.position_center.x + self.offset_inter, self.position_center.y)
         self.rect_corner_l.center = (self.position_center.x - self.offset_corner, self.position_center.y)
