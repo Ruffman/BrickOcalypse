@@ -20,8 +20,9 @@ def handle_ball_coll_border():
 
 
 def player_paddle_with_ball_collision_check():
-    if my_ball.rect.colliderect(player_paddle.rect):
-        my_ball.speed_y *= -1
+    pass
+    # if my_ball.rect.colliderect(player_paddle.rect):
+    #     my_ball.speed_y *= -1
 
 
 # pygame setup
