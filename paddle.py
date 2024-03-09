@@ -13,12 +13,13 @@ class Paddle(pg.sprite.Sprite):
         self.speed_x = 50
         self.height = 20
         self.width_total = width
-        self.width_for_calc = self.width_total - 2 * self.height
-        self.width_middle = self.width_for_calc // 2
-        self.width_inter = self.width_middle // 2
-        self.width_corners = self.height
-        self.offset_inter = self.width_middle // 2 + self.width_inter // 2
-        self.offset_corner = self.offset_inter + self.width_inter // 2 + self.width_corners // 2
+        self.width_for_calc = 0
+        self.width_middle = 0
+        self.width_inter = 0
+        self.width_corners = 0
+        self.offset_inter = 0
+        self.offset_corner = 0
+        self.calc_widths()
 
         self.middle = pg.Surface((self.width_middle, self.height))
         self.middle.fill("red")
@@ -49,6 +50,8 @@ class Paddle(pg.sprite.Sprite):
         self.rect_corner_r = self.corner_r.get_rect(center=(self.position_center.x + self.offset_corner,
                                                             self.position_center.y))
 
+
+
     def update(self):
         self.position_center = pg.Vector2(pg.mouse.get_pos()[0], self.position_center.y)
         self.rect_paddle.center = (self.position_center.x, self.position_center.y)
@@ -71,3 +74,18 @@ class Paddle(pg.sprite.Sprite):
             self.screen.blit(self.inter_r, self.rect_inter_r)
             self.screen.blit(self.corner_l, self.rect_corner_l)
             self.screen.blit(self.corner_r, self.rect_corner_r)
+
+    def calc_widths(self):
+        self.width_for_calc = self.width_total - 2 * self.height
+        self.width_middle = self.width_for_calc // 2
+        self.width_inter = self.width_middle // 2
+        self.width_corners = self.height
+        self.offset_inter = self.width_middle // 2 + self.width_inter // 2
+        self.offset_corner = self.offset_inter + self.width_inter // 2 + self.width_corners // 2
+
+    def increase_width(self, amount):
+        self.width_total += amount
+        self.calc_widths()
+
+    def decrease_width(self):
+        pass
