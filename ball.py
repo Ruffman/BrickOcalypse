@@ -20,7 +20,8 @@ class Ball(pg.sprite.Sprite):
 
     def update(self, delta_time):
         self.move(delta_time)
-        self.screen.blit(self.image, self.rect)
+        # self.screen.blit(self.image, self.rect)
+        pg.draw.circle(self.screen, "white", center=self.rect.center, radius=self.radius//2)
 
     def move(self, delta_time):
         self.position.x += self.speed_x * delta_time
