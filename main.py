@@ -20,9 +20,33 @@ def handle_ball_coll_border():
 
 
 def player_paddle_with_ball_collision_check():
-    pass
-    # if my_ball.rect.colliderect(player_paddle.rect):
-    #     my_ball.speed_y *= -1
+    if my_ball.rect.colliderect(player_paddle.rect_total):
+        if my_ball.rect.colliderect(player_paddle.rect_middle):
+            my_ball.speed_y *= -1
+        elif my_ball.rect.colliderect(player_paddle.rect_inter_l):
+            my_ball.speed_y *= -1
+            if my_ball.speed_x < 0:
+                my_ball.speed_x *= 1.25
+            elif my_ball.speed_x > 0:
+                my_ball.speed_x *= 0.75
+        elif my_ball.rect.colliderect(player_paddle.rect_inter_r):
+            my_ball.speed_y *= -1
+            if my_ball.speed_x > 0:
+                my_ball.speed_x *= 1.25
+            elif my_ball.speed_x > 0:
+                my_ball.speed_x *= 0.75
+        elif my_ball.rect.colliderect(player_paddle.rect_corner_l):
+            my_ball.speed_y *= -1
+            if my_ball.speed_x < 0:
+                my_ball.speed_x *= 2
+            elif my_ball.speed_x > 0:
+                my_ball.speed_x *= 0.5
+        elif my_ball.rect.colliderect(player_paddle.rect_corner_r):
+            my_ball.speed_y *= -1
+            if my_ball.speed_x > 0:
+                my_ball.speed_x *= 2
+            elif my_ball.speed_x > 0:
+                my_ball.speed_x *= 0.5
 
 
 # pygame setup
