@@ -51,8 +51,10 @@ def play_game():
     handle_ball_coll_border()
     player_paddle_with_ball_collision_check()
     for i in range(0, len(my_playboard.bricks) - 1):
-        if my_ball.rect.colliderect(my_playboard.bricks[i].rect):
-            my_playboard.bricks.pop(i)
+        brick = my_playboard.bricks[i]
+        if my_ball.rect.colliderect(brick.rect):
+            if brick.hit() <= 0:
+                my_playboard.bricks.pop(i)
 
     # RENDER YOUR GAME HERE
     my_playboard.update(screen)

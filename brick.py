@@ -28,3 +28,7 @@ class Brick(pg.sprite.Sprite):
     def change_color(self, color):
         self.color = color
         self.image.fill(self.color)
+
+    def hit(self) -> int:
+        self.level -= 1
+        return self.level
