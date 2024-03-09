@@ -90,6 +90,16 @@ while running:
                 my_playboard.load_brick_layout()
             if key == pg.K_e:
                 toggle_edit_mode()
+            if key == pg.K_1:
+                editor.NEW_BRICK_LVL = 1
+            if key == pg.K_2:
+                editor.NEW_BRICK_LVL = 2
+            if key == pg.K_3:
+                editor.NEW_BRICK_LVL = 3
+            if key == pg.K_4:
+                editor.NEW_BRICK_LVL = 4
+            if key == pg.K_5:
+                editor.NEW_BRICK_LVL = 5
 
 
     play_game()
