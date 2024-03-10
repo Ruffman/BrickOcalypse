@@ -23,6 +23,13 @@ class Playboard:
         self.surface = pg.Surface((self.width, self.height))
 
         self.bricks: list[Brick] = []
+        self.num_bricks = 0
+
+        self.font = pg.font.SysFont("Comic Sans MS", 20)
+
+    def display_num_bricks(self):
+        label = self.font.render(f"Bricks left: {len(self.bricks)}/{self.num_bricks}", 1, "white")
+        self.surface.blit(label, (30, 10))
 
     def add_brick(self, level: int):
         is_free = True
@@ -59,6 +66,13 @@ class Playboard:
             for brick in layout_data["bricks"]:
                 self.bricks.append(Brick(self.surface, pg.Vector2(brick["x"], brick["y"]), brick["level"]))
 
+        self.num_bricks = len(self.bricks)
+
+    def display_game_win(self):
+        font = pg.font.SysFont("Comic Sans MS", 30)
+        label = font.render("You win!", 1, "white")
+        self.surface.blit(label, (self.width // 2, self.height // 2))
+
     def update(self, screen: pg.Surface):
         self.surface.fill("black")
 
@@ -70,6 +84,9 @@ class Playboard:
             self.find_active()
             self.highlight_active()
 
+        self.display_num_bricks()
+        if len(self.bricks) == 0:
+            self.display_game_win()
         screen.blit(self.surface, self.surface.get_rect())
 
     def calc_grid_coord(self):
