@@ -87,6 +87,7 @@ def play_game():
         if my_ball.rect.colliderect(brick.rect):
             if brick.hit() <= 0:
                 my_playboard.bricks.pop(i)
+            my_ball.speed_y *= -1
 
     # RENDER YOUR GAME HERE
     my_playboard.update(screen)
