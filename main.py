@@ -82,11 +82,10 @@ def play_game():
     # logic updates HERE
     handle_ball_coll_border()
     player_paddle_with_ball_collision_check()
-    for i in range(0, len(my_playboard.bricks) - 1):
-        brick = my_playboard.bricks[i]
+    for index, brick in enumerate(my_playboard.bricks):
         if my_ball.rect.colliderect(brick.rect):
             if brick.hit() <= 0:
-                my_playboard.bricks.pop(i)
+                my_playboard.bricks.pop(index)
             my_ball.speed_y *= -1
 
     # RENDER YOUR GAME HERE
