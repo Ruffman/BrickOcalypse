@@ -1,3 +1,5 @@
+import random
+
 import pygame as pg
 
 from ball import Ball
@@ -16,8 +18,13 @@ def handle_ball_coll_border():
     radius = my_ball.radius // 2
     if 0 + radius > my_ball.position.x or my_ball.position.x > my_playboard.width - radius:
         my_ball.speed_x *= -1
-    if 0 + radius > my_ball.position.y or my_ball.position.y > my_playboard.height - radius:
+    if 0 + radius > my_ball.position.y:
         my_ball.speed_y *= -1
+    if my_ball.position.y > my_playboard.height - radius:
+        my_ball.position.y = HEIGHT // 2
+        my_ball.position.x = WIDTH // 2
+        my_ball.speed_x = random.randrange(-400, -200)
+        my_ball.speed_y = random.randrange(-400, -200)
 
 
 def player_paddle_with_ball_collision_check():
