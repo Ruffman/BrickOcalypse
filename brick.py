@@ -31,4 +31,6 @@ class Brick(pg.sprite.Sprite):
 
     def hit(self) -> int:
         self.level -= 1
+        if self.level >= 1:
+            self.change_color(editor.BRICK_LVL_TO_COLOR[self.level])
         return self.level
