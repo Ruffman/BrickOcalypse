@@ -25,11 +25,18 @@ class Playboard:
         self.bricks: list[Brick] = []
         self.num_bricks = 0
 
+        self.player_balls = 3
+        self.game_is_on = True
+
         self.font = pg.font.SysFont("Comic Sans MS", 20)
 
     def display_num_bricks(self):
         label = self.font.render(f"Bricks left: {len(self.bricks)}/{self.num_bricks}", 1, "white")
         self.surface.blit(label, (30, 10))
+
+    def display_num_lives(self):
+        label = self.font.render(f"Balls left: {self.player_balls}", 1, "white")
+        self.surface.blit(label, (1100, 10))
 
     def add_brick(self, level: int):
         is_free = True
@@ -73,6 +80,11 @@ class Playboard:
         label = font.render("You win!", 1, "white")
         self.surface.blit(label, (self.width // 2, self.height // 2))
 
+    def display_game_loss(self):
+        font = pg.font.SysFont("Comic Sans MS", 30)
+        label = font.render("You lose!", 1, "white")
+        self.surface.blit(label, (self.width // 2, self.height // 2))
+
     def update(self, screen: pg.Surface):
         self.surface.fill("black")
 
@@ -85,8 +97,13 @@ class Playboard:
             self.highlight_active()
 
         self.display_num_bricks()
+        self.display_num_lives()
         if len(self.bricks) == 0:
+            self.game_is_on = False
             self.display_game_win()
+        if self.player_balls == 0:
+            self.game_is_on = False
+            self.display_game_loss()
         screen.blit(self.surface, self.surface.get_rect())
 
     def calc_grid_coord(self):
