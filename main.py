@@ -21,10 +21,8 @@ def handle_ball_coll_border():
     if 0 + radius > my_ball.position.y:
         my_ball.speed_y *= -1
     if my_ball.position.y > my_playboard.height - radius:
-        my_ball.position.y = HEIGHT // 2
-        my_ball.position.x = WIDTH // 2
-        my_ball.speed_x = random.randrange(-400, -200)
-        my_ball.speed_y = random.randrange(-400, -200)
+        reset_ball()
+        my_playboard.player_balls -= 1
 
 
 def player_paddle_with_ball_collision_check():
@@ -95,12 +93,12 @@ def play_game():
                 my_playboard.bricks.pop(index)
             my_ball.speed_y *= -1
 
-    # RENDER YOUR GAME HERE
-    my_playboard.update(screen)
 
-    if not editor.EDITOR_MODE:
-        my_ball.update(dt)
-        player_paddle.update()
+def reset_ball():
+    my_ball.position.y = HEIGHT // 2
+    my_ball.position.x = WIDTH // 2
+    my_ball.speed_x = random.randrange(-400, -200)
+    my_ball.speed_y = random.randrange(-400, -200)
 
 
 while running:
@@ -129,6 +127,8 @@ while running:
                 my_playboard.save_brick_layout()
             if key == pg.K_l:
                 my_playboard.load_brick_layout()
+                my_playboard.game_is_on = True
+                reset_ball()
             if key == pg.K_e:
                 toggle_edit_mode()
             if key == pg.K_d:
@@ -144,8 +144,15 @@ while running:
             if key == pg.K_5:
                 editor.NEW_BRICK_LVL = 5
 
+    if my_playboard.game_is_on:
+        play_game()
 
-    play_game()
+    # RENDER YOUR GAME HERE
+    my_playboard.update(screen)
+
+    if not editor.EDITOR_MODE:
+        my_ball.update(dt)
+        player_paddle.update()
 
     # flip() the display to put your work on screen
     pg.display.flip()
